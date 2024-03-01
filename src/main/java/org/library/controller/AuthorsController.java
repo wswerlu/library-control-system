@@ -1,5 +1,8 @@
 package org.library.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.library.dto.author.AuthorCreateDTO;
 import org.library.dto.author.AuthorDTO;
@@ -13,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/authors")
+@Tag(name = "author", description = "Operations about authors")
 public class AuthorsController {
 
     @Autowired
@@ -20,31 +24,37 @@ public class AuthorsController {
 
     @GetMapping(path = "")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Find all authors")
     public List<AuthorDTO> index(){
         return authorService.getAllAuthors();
     }
 
     @PostMapping(path = "")
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Create author")
     public AuthorDTO create(@Valid @RequestBody AuthorCreateDTO authorData) {
         return authorService.create(authorData);
     }
 
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AuthorDTO show(@PathVariable Long id) {
+    @Operation(summary = "Find author by id")
+    public AuthorDTO show(@PathVariable @Parameter(description = "Author id") Long id) {
         return authorService.getAuthorById(id);
     }
 
     @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AuthorDTO update(@Valid @RequestBody AuthorUpdateDTO authorData, @PathVariable Long id) {
+    @Operation(summary = "Update author with id")
+    public AuthorDTO update(@Valid @RequestBody AuthorUpdateDTO authorData,
+                            @PathVariable @Parameter(description = "Author id") Long id) {
         return authorService.update(authorData, id);
     }
 
     @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    @Operation(summary = "Delete author by id")
+    public void delete(@PathVariable @Parameter(description = "Author id") Long id) {
         authorService.delete(id);
     }
 }

@@ -9,9 +9,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 @Setter
 @Getter
 public class BookUpdateDTO {
-    @NotNull
     private JsonNullable<Long> authorId;
-
-    @NotBlank
     private JsonNullable<String> title;
 }
