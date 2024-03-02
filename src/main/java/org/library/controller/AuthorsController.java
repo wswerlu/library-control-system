@@ -19,7 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/authors")
@@ -131,7 +133,9 @@ public class AuthorsController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             })
     })
-    public void delete(@PathVariable @Parameter(description = "Author id") Long id) {
+    public Map<String, Object> delete(@PathVariable @Parameter(description = "Author id") Long id) {
         authorService.delete(id);
+
+        return Collections.emptyMap();
     }
 }
