@@ -36,7 +36,8 @@ public class AuthorsController {
     @Operation(summary = "Find all authors")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = AuthorDTO.class)))
+                    @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = AuthorDTO.class)))
             }),
             @ApiResponse(responseCode = "400", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
@@ -48,7 +49,7 @@ public class AuthorsController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             })
     })
-    public List<AuthorDTO> index(){
+    public List<AuthorDTO> index() {
         return authorService.getAllAuthors();
     }
 

@@ -36,7 +36,8 @@ public class BooksController {
     @Operation(summary = "Find all books")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = BookDTO.class)))
+                    @Content(mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = BookDTO.class)))
             }),
             @ApiResponse(responseCode = "400", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
@@ -48,7 +49,7 @@ public class BooksController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
             })
     })
-    public List<BookDTO> index(){
+    public List<BookDTO> index() {
         return bookService.getAllBooks();
     }
 
