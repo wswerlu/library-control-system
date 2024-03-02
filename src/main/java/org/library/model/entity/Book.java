@@ -1,8 +1,9 @@
-package org.library.model;
+package org.library.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,6 +19,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
+@EqualsAndHashCode(of = {"author", "title"})
 public class Book implements BaseEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)

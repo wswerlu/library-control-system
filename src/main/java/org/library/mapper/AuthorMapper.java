@@ -3,7 +3,7 @@ package org.library.mapper;
 import org.library.dto.author.AuthorCreateDTO;
 import org.library.dto.author.AuthorDTO;
 import org.library.dto.author.AuthorUpdateDTO;
-import org.library.model.Author;
+import org.library.model.entity.Author;
 import org.mapstruct.*;
 
 @Mapper(

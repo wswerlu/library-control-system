@@ -12,4 +12,5 @@ public class AuthorDTO {
     private String firstName;
     private String lastName;
     private LocalDate createdAt;
+    private LocalDate updatedAt;
 }
