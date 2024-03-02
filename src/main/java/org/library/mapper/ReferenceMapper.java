@@ -1,7 +1,7 @@
 package org.library.mapper;
 
 import jakarta.persistence.EntityManager;
-import org.library.model.BaseEntity;
+import org.library.model.entity.BaseEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.TargetType;
