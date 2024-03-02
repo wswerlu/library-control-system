@@ -3,6 +3,7 @@ package org.library.service;
 import org.library.dto.author.AuthorCreateDTO;
 import org.library.dto.author.AuthorDTO;
 import org.library.dto.author.AuthorUpdateDTO;
+import org.library.exception.ResourceAlreadyExistsException;
 import org.library.exception.ResourceNotFoundException;
 import org.library.mapper.AuthorMapper;
 import org.library.model.entity.Author;
@@ -31,6 +32,13 @@ public class AuthorService {
 
     public AuthorDTO create(AuthorCreateDTO authorData) {
         var author = authorMapper.map(authorData);
+
+        if (authorRepository.findAll().contains(author)) {
+            throw new ResourceAlreadyExistsException(
+                    "Author " + author.getFirstName() + " " + author.getLastName() + " already exist"
+            );
+        }
+
         authorRepository.save(author);
 
         return authorMapper.map(author);

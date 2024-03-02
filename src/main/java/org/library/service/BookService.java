@@ -3,6 +3,7 @@ package org.library.service;
 import org.library.dto.book.BookCreateDTO;
 import org.library.dto.book.BookDTO;
 import org.library.dto.book.BookUpdateDTO;
+import org.library.exception.ResourceAlreadyExistsException;
 import org.library.exception.ResourceNotFoundException;
 import org.library.mapper.BookMapper;
 import org.library.model.entity.Book;
@@ -35,6 +36,14 @@ public class BookService {
 
     public BookDTO create(BookCreateDTO bookData) {
         var book = bookMapper.map(bookData);
+
+        if (bookRepository.findAll().contains(book)) {
+            throw new ResourceAlreadyExistsException(
+                    "Book '" + book.getTitle() + "' by author " + book.getAuthor().getFirstName() + " "
+                            + book.getAuthor().getLastName() + " already exist"
+            );
+        }
+
         bookRepository.save(book);
 
         return bookMapper.map(book);
