@@ -5,6 +5,7 @@ import org.library.dto.book.BookDTO;
 import org.library.dto.book.BookUpdateDTO;
 import org.library.exception.ResourceNotFoundException;
 import org.library.mapper.BookMapper;
+import org.library.model.entity.Book;
 import org.library.repository.AuthorRepository;
 import org.library.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,15 +41,13 @@ public class BookService {
     }
 
     public BookDTO getBookById(Long id) {
-        var book = bookRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Book with id " + id + " not found"));
+        var book = getBookOrElseThrow(id);
 
         return bookMapper.map(book);
     }
 
     public BookDTO update(BookUpdateDTO bookData, Long id) {
-        var book = bookRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Book with id " + id + " not found"));
+        var book = getBookOrElseThrow(id);
         var author = authorRepository.findById(bookData.getAuthorId().get())
                 .orElseThrow(() -> new ResourceNotFoundException("Author not found"));
 
@@ -60,6 +59,12 @@ public class BookService {
     }
 
     public void delete(Long id) {
+        getBookOrElseThrow(id);
         bookRepository.deleteById(id);
+    }
+
+    private Book getBookOrElseThrow(Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Book with id " + id + " not found"));
     }
 }

@@ -5,6 +5,7 @@ import org.library.dto.author.AuthorDTO;
 import org.library.dto.author.AuthorUpdateDTO;
 import org.library.exception.ResourceNotFoundException;
 import org.library.mapper.AuthorMapper;
+import org.library.model.entity.Author;
 import org.library.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,15 +37,13 @@ public class AuthorService {
     }
 
     public AuthorDTO getAuthorById(Long id) {
-        var author = authorRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Author with id " + id + " not found"));
+        var author = getAuthorOrElseThrow(id);
 
         return authorMapper.map(author);
     }
 
     public AuthorDTO update(AuthorUpdateDTO authorData, Long id) {
-        var author = authorRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Author with id " + id + " not found"));
+        var author = getAuthorOrElseThrow(id);
 
         authorMapper.update(authorData, author);
         authorRepository.save(author);
@@ -53,6 +52,12 @@ public class AuthorService {
     }
 
     public void delete(Long id) {
+        getAuthorOrElseThrow(id);
         authorRepository.deleteById(id);
+    }
+
+    private Author getAuthorOrElseThrow(Long id) {
+        return authorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Author with id " + id + " not found"));
     }
 }
