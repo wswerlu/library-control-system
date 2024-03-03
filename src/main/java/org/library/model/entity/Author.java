@@ -2,6 +2,7 @@ package org.library.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,9 +29,11 @@ public class Author implements BaseEntity {
     private long id;
 
     @NotBlank
+    @Pattern(regexp = "[a-zA-Z-]*")
     private String firstName;
 
     @NotBlank
+    @Pattern(regexp = "[a-zA-Z-]*")
     private String lastName;
 
     @CreatedDate
