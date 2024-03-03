@@ -5,6 +5,10 @@
                              http://pmd.sourceforge.net/ruleset_2_0_0.xsd"
          name="PMD RuleSet">
 
+    <description>
+            Custom Ruleset for PMD
+    </description>
+
     <!-- Best practices ruleset -->
     <rule ref="category/java/bestpractices.xml"/>
 
@@ -17,6 +21,5 @@
     <!-- Rules to enforce good naming conventions -->
     <rule ref="category/java/codestyle.xml/ClassNamingConventions"/>
     <rule ref="category/java/codestyle.xml/MethodNamingConventions"/>
-    <rule ref="category/java/codestyle.xml/VariableNamingConventions"/>
 
 </ruleset>
