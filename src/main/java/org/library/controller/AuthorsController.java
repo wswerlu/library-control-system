@@ -9,9 +9,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.library.domain.constants.MediaType;
 import org.library.dto.author.AuthorCreateDTO;
 import org.library.dto.author.AuthorDTO;
 import org.library.dto.author.AuthorUpdateDTO;
+import org.library.domain.constants.StatusCode;
 import org.library.model.response.EmptyResponse;
 import org.library.model.response.ErrorResponse;
 import org.library.service.AuthorService;
@@ -35,18 +37,21 @@ public class AuthorsController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Find all authors")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json",
+            @ApiResponse(responseCode = StatusCode.OK, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
                             array = @ArraySchema(schema = @Schema(implementation = AuthorDTO.class)))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public List<AuthorDTO> index() {
@@ -57,17 +62,21 @@ public class AuthorsController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create author")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = AuthorDTO.class))
+            @ApiResponse(responseCode = StatusCode.CREATED, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = AuthorDTO.class))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public AuthorDTO create(@Valid @RequestBody AuthorCreateDTO authorData) {
@@ -78,17 +87,21 @@ public class AuthorsController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Find author by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = AuthorDTO.class))
+            @ApiResponse(responseCode = StatusCode.OK, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = AuthorDTO.class))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public AuthorDTO show(@PathVariable @Parameter(description = "Author id") Long id) {
@@ -99,17 +112,21 @@ public class AuthorsController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update author with id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = AuthorDTO.class))
+            @ApiResponse(responseCode = StatusCode.OK, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = AuthorDTO.class))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public AuthorDTO update(@Valid @RequestBody AuthorUpdateDTO authorData,
@@ -121,17 +138,21 @@ public class AuthorsController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete author by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = EmptyResponse.class))
+            @ApiResponse(responseCode = StatusCode.OK, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = EmptyResponse.class))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON, 
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public Map<String, Object> delete(@PathVariable @Parameter(description = "Author id") Long id) {
