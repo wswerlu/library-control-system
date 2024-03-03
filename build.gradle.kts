@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("checkstyle")
+    id("pmd")
     id("org.springframework.boot") version "3.2.2"
     id("io.spring.dependency-management") version "1.1.3"
 }
@@ -44,6 +45,12 @@ dependencies {
 checkstyle {
     toolVersion = "10.14.0"
     config = resources.text.fromFile("${project.projectDir}/src/main/resources/checkstyle.xml")
+}
+
+pmd {
+    toolVersion = "6.55.0"
+    isConsoleOutput = true
+    ruleSets = listOf("${project.projectDir}/src/main/resources/pmdrules.xml")
 }
 
 tasks.test {
