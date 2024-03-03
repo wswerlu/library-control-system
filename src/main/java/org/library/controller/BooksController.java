@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.library.domain.constants.MediaType;
+import org.library.domain.constants.StatusCode;
 import org.library.dto.book.BookCreateDTO;
 import org.library.dto.book.BookDTO;
 import org.library.dto.book.BookUpdateDTO;
@@ -35,20 +37,24 @@ public class BooksController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Find all books")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = BookDTO.class)))
+            @ApiResponse(responseCode = StatusCode.OK, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            array = @ArraySchema(schema = @Schema(implementation = BookDTO.class)))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
-    public List<BookDTO> index(){
+    public List<BookDTO> index() {
         return bookService.getAllBooks();
     }
 
@@ -56,17 +62,21 @@ public class BooksController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create book")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = BookDTO.class))
+            @ApiResponse(responseCode = StatusCode.CREATED, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = BookDTO.class))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public BookDTO create(@Valid @RequestBody BookCreateDTO bookData) {
@@ -77,17 +87,21 @@ public class BooksController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Find book by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = BookDTO.class))
+            @ApiResponse(responseCode = StatusCode.OK, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = BookDTO.class))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public BookDTO show(@PathVariable @Parameter(description = "Book id") Long id) {
@@ -98,17 +112,21 @@ public class BooksController {
     @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Update book with id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = BookDTO.class))
+            @ApiResponse(responseCode = StatusCode.OK, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = BookDTO.class))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public BookDTO update(@Valid @RequestBody BookUpdateDTO bookData,
@@ -120,17 +138,21 @@ public class BooksController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete book by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = EmptyResponse.class))
+            @ApiResponse(responseCode = StatusCode.OK, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = EmptyResponse.class))
             }),
-            @ApiResponse(responseCode = "400", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.BAD_REQUEST, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "404", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.NOT_FOUND, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             }),
-            @ApiResponse(responseCode = "500", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))
+            @ApiResponse(responseCode = StatusCode.INTERNAL_ERROR, content = {
+                    @Content(mediaType = MediaType.APPLICATION_JSON,
+                            schema = @Schema(implementation = ErrorResponse.class))
             })
     })
     public Map<String, Object> delete(@PathVariable @Parameter(description = "Book id") Long id) {
