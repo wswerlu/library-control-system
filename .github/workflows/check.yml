@@ -1,6 +1,5 @@
 name: Run check task
-on:
-  [push, pull_request]
+on: push
 jobs:
   check:
     runs-on: ubuntu-latest
