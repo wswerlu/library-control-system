@@ -1,0 +1,9 @@
+**/*.class
+.git
+.idea
+*.iml
+*.iws
+.github
+.gradle
+build/
+!build/libs/library-control-system-*.jar
