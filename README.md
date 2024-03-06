@@ -12,9 +12,11 @@
 
 ## Запуск приложения и его адрес
 
-Для запуска приложения необходимо выполнить команду `./gradlew bootRun`
+Возможен запуск с помощью таски `bootRun` сборщика Gradle или путем загрузки образа приложения последней версии из Docker Hub:
+* Gradle — `./gradlew bootRun`
+* Docker — `docker pull wswerlu/library-control-system:latest`
 
-Адреса:
+После запуска приложение и сваггер будут доступны по адресам:
 * приложение — `http://localhost:8080/`
 * сваггер — `http://localhost:8080/swagger-ui/index.html`
 
