@@ -1,7 +1,7 @@
 name: Build app
 on: push
 jobs:
-  check:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
