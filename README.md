@@ -14,7 +14,7 @@
 
 Возможен запуск с помощью таски `bootRun` сборщика Gradle или путем загрузки образа приложения последней версии из Docker Hub:
 * Gradle — `./gradlew bootRun`
-* Docker — `docker pull wswerlu/library-control-system:latest`
+* Docker — `docker run -d -p 8080:8080 wswerlu/library-control-system:latest`
 
 После запуска приложение и сваггер будут доступны по адресам:
 * приложение — `http://localhost:8080/`
