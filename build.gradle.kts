@@ -33,7 +33,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.30")
 
     // db
-    runtimeOnly("com.h2database:h2")
+    implementation("com.h2database:h2")
 
     // tools
     testImplementation("net.javacrumbs.json-unit:json-unit-assertj:3.2.2")
