@@ -56,3 +56,8 @@ pmd {
 tasks.test {
     useJUnitPlatform()
 }
+
+task("codeQualityCheck") {
+    group = "verification"
+    dependsOn("checkstyleMain", "checkstyleTest", "pmdMain", "pmdTest")
+}
