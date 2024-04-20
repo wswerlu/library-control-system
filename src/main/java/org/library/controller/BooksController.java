@@ -135,7 +135,7 @@ public class BooksController {
     }
 
     @DeleteMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     @Operation(summary = "Delete book by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = StatusCode.OK, content = {
